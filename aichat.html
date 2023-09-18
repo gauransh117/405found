@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>AI Chat</title>
+
+    <link rel="shortcut icon" href="favicon2.png" type="image/x-icon">
+    <!--use of favicon for the icon on web page-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>AI Chatbot</title>
+    <style>
+        h1 {
+            font-size: 40px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+			background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #f8e9d3;
+            color: black;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff9900;
+        }
+
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chatbot-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .user-message,
+        .bot-message {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .user-message {
+            background-color: #f0f0f0;
+        }
+
+        .bot-message {
+            background-color: #c5e7f2;
+        }
+
+        .input-container {
+            display: flex;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #send-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+		
+			#logo-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+		
+		#logo-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Add the top left logo -->
+        <img src="serenechat.png" alt="Left Logo" id="logo-left" height = "180" width = "180">
+        <h1 style="font-family: Brush Script MT">SereneChat</h1>
+		<h2 style="font-family: Garamond">Your Virtual Therapist</h2>
+        <nav>
+            <ul>	
+				<li><a href="index2.html">Home</a></li>
+                <li><a href="aichat.html">AI Chat</a></li>
+				<li><a href="exercise.html">Self-help Exercises</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="contactus.html">Contact us</a></li>
+            </ul>
+        </nav>
+        <!-- Add the top right logo -->
+        <img src="worqhatlogo.png" alt="Right Logo" id="logo-right" height = "220" width = "220" align= "right">
+    </header>
+	
+        <br><br><br>
+        <div class="chatbot-container">
+
+            <h1>AI Chatbot</h1>
+		
+            <h3> Hello! I am your Virtual Therapist,<br><br> Feel Free to Talk About Your Feelings!</h3>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will appear here -->
+            </div>
+			
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button type="button" id="send-button">Send</button>
+            </div>
+        </div>
+
+        <script>
+            // JavaScript for chatbot functionality
+            const chatMessages = document.getElementById("chat-messages");
+            const userInput = document.getElementById("user-input");
+            const sendButton = document.getElementById("send-button");
+
+            function addUserMessage(message) {
+                const userMessage = document.createElement("div");
+                userMessage.className = "user-message";
+                userMessage.textContent = message;
+                chatMessages.appendChild(userMessage);
+            }
+
+            function addBotMessage(message) {
+                const botMessage = document.createElement("div");
+                botMessage.className = "bot-message";
+                botMessage.textContent = message;
+                chatMessages.appendChild(botMessage);
+            }
+
+            function handleUserInput() {
+                const userText = userInput.value.trim();
+                if (userText === "") return;
+
+                addUserMessage(userText);
+
+                setTimeout(() => {
+                    addBotMessage("Use WorqHat's Ai Con V3 Advanced Model Here");
+                    // Clear the user input
+                    userInput.value = "";
+                    // Scroll to the bottom of the chat messages
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 500);
+            }
+
+            sendButton.addEventListener("click", handleUserInput);
+            userInput.addEventListener("keypress", function(e) {
+                if (e.key === "Enter") {
+                    handleUserInput();
+                }
+            });
+        </script>
+    </body>
+
+</html>
+
